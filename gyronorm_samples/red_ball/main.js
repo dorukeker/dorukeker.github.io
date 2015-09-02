@@ -29,13 +29,15 @@ $(document).ready(function(){
   // Callback function for gn.start();
   var onGyronormCallback = function(data){
 
+    $('#ball').html(data.dm.gx + ' , ' + data.dm.gy + ' , ' + data.dm.gz);
+
     ballCurrentX = parseInt($('#ball').css('left'));
-    ballNewX = Math.max(ballCurrentX-(data.dm.gx * 5),0);
+    ballNewX = Math.max(ballCurrentX + (data.dm.gx * 5),0);
     ballNewX = Math.min(ballNewX,containerWidth - ballWidth);
     $('#ball').css('left',ballNewX);
 
     ballCurrentY = parseInt($('#ball').css('top'));
-    ballNewY = Math.max(ballCurrentY+(data.dm.gy * 5),0);
+    ballNewY = Math.max(ballCurrentY - (data.dm.gy * 5),0);
     ballNewY = Math.min(ballNewY,containerHeight - ballHeight);
     $('#ball').css('top',ballNewY);
 
