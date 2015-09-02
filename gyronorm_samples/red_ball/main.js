@@ -29,8 +29,6 @@ $(document).ready(function(){
   // Callback function for gn.start();
   var onGyronormCallback = function(data){
 
-    $('#ball').html(data.dm.gx + ' , ' + data.dm.gy + ' , ' + data.dm.gz);
-
     ballCurrentX = parseInt($('#ball').css('left'));
     ballNewX = Math.max(ballCurrentX + (data.dm.gx * 5),0);
     ballNewX = Math.min(ballNewX,containerWidth - ballWidth);
