@@ -1,0 +1,45 @@
+.container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  padding: 0;
+}
+
+span{
+  background: #fff;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  padding: 20px 0;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+span.current{
+  border: 3px solid #666;
+  color: #000;
+}
+
+span.done{
+  border: 3px solid #0D8000;
+  color: #0D8000;
+  background: #D4FFD6;
+}
+
+#button{
+  margin-top: 210px;
+  color: #5A9E53;
+}
+
+#crack{
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
