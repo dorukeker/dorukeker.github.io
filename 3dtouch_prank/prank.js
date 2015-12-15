@@ -1,5 +1,9 @@
 var sound = new Howl({
-  urls: ['crack.mp3']
+  urls: ['crack.mp3'],
+  onload: function(){
+    // makes sure the sound is loaded. then shows the html content
+    $('.container').removeClass('hidden');
+  }
 });
 
 

@@ -43,3 +43,7 @@ span.done{
   height: 100%;
   display: none;
 }
+
+.hidden{
+  display: none;
+}
