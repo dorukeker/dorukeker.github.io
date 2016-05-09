@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GN vs FT</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 centered"><h1>GN</h1></div>
+			<div class="col-xs-6 center"><h1>FT</h1></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2 centered">alpha</div>
+			<div class="col-xs-5 center"><input id="gnalpha" class="form-control" type="text"/></div>
+			<div class="col-xs-5 center"><input id="ftalpha" class="form-control" type="text"/></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2 centered">beta</div>
+			<div class="col-xs-5 center"><input id="gnbeta" class="form-control" type="text"/></div>
+			<div class="col-xs-5 center"><input id="ftbeta" class="form-control" type="text"/></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2 centered">gamma</div>
+			<div class="col-xs-5 center"><input id="gngamma" class="form-control" type="text"/></div>
+			<div class="col-xs-5 center"><input id="ftgamma" class="form-control" type="text"/></div>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript" src="gyronorm.complete.min.js"></script>
+	<script type="text/javascript">
+		
+	// Gyronorm
+
+		var gn = new GyroNorm();
+
+	    gn.init().then(function(){
+	        gn.start(function(data){
+	        	$('#gnalpha').val(data.do.alpha);
+	        	$('#gnbeta').val(data.do.beta);
+	        	$('#gngamma').val(data.do.gamma);
+	        });
+	    }).catch(function(e){
+	      console.error(e)
+	    });
+
+	// FullTilt
+
+		var promise = new FULLTILT.getDeviceOrientation({ 'type': 'game' });
+		var deviceOrientation;
+
+		promise
+		    .then(function(controller) {
+		      deviceOrientation = controller;
+		    })
+		    .catch(function(message) {
+		      console.error(message);
+		    });
+
+		(function draw() {
+
+		    
+		    if (deviceOrientation) {
+
+		      
+		      var euler = deviceOrientation.getScreenAdjustedEuler();
+
+		      $('#ftalpha').val(euler.alpha);
+	       	  $('#ftbeta').val(euler.beta);
+	          $('#ftgamma').val(euler.gamma);
+
+		    }
+
+		    // Execute function on each browser animation frame
+		    requestAnimationFrame(draw);
+
+		  })();
+	</script>
+</body>
+</html>
