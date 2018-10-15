@@ -1,0 +1,37 @@
+<!doctype HTML>
+<html>
+<head>
+	<style media="screen">
+		button{
+			position: absolute;
+			top: 20px;
+			left: 100px;
+			width: 100px;
+			height: 50px;
+		}
+	</style>
+</head>
+<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js"> </script>
+<script src="https://rawgit.com/mayognaise/aframe-video-shader/master/dist/aframe-vid-shader.min.js"></script>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
+			<a-assets>
+		    <video id="sample-video" src="video.mp4"></video>
+		  </a-assets>
+	  	<a-marker preset="custom" type="pattern" url="/pattern-marker.patt">
+				<!-- <a-video src="#sample-video" width="1.6" height="0.9" position="0 0.5 0" rotation="-45 0 0"></a-video> -->
+	      <a-box position='0 0.5 0' material='color: black;'></a-box>
+				<!-- <a-box position='0 0.5 0' material="shader:video;src:#sample-video;"></a-entity> -->
+	  	</a-marker>
+	  	<a-entity camera></a-entity>
+    </a-scene>
+		<button type="button" name="button" onclick="play()">PLAY</button>
+  </body>
+	<script type="text/javascript">
+		var video = document.getElementById('sample-video');
+		function play(){
+			video.play();
+		}
+	</script>
+</html>
